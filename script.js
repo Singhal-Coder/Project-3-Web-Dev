@@ -135,6 +135,7 @@ let time = 0,
   timerMiliseconds = 0,
   timerRunning = false,
   timerInterval;
+let audio = new Audio("./beep.mp3.mp3");
 
 function getTime() {
   time = prompt("Enter time in minutes");
@@ -172,7 +173,7 @@ function timer() {
   $("#timer-min").html(addTrailingZero(timerMinutes));
   $("#timer-sec").html(addTrailingZero(timerSeconds));
   $("#timer-ms").html(addTrailingZero(timerMiliseconds));
-
+  
   timeUp();
 }
 
@@ -210,9 +211,11 @@ function timeUp() {
     timerMiliseconds === 0
   ) {
     stopTimer();
-    alert("Time's up!");
-
-    setTime();
+    audio.play();
+    setTimeout(()=>{
+      alert("Time's up!")
+      setTime();
+    }, 15);
   }
 }
 
